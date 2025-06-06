@@ -115,3 +115,4 @@ pipe(prompt, temperature=0.2, top_p=0.9, max_new_tokens=300)
 
 * [OpenGVLab/InternVL3-1B on Hugging Face](https://huggingface.co/OpenGVLab/InternVL3-1B)
 * [LMDeploy GitHub](https://github.com/InternLM/lmdeploy)
+
