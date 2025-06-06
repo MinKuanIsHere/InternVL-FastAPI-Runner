@@ -44,18 +44,6 @@ After launch, the FastAPI server will be accessible at `http://localhost:8000`.
 | `/gpu`   | GET    | Check if CUDA/GPU is available          |
 | `/infer` | POST   | Perform multimodal inference with image |
 
-### Example: `/infer` Request Payload
-
-```json
-POST /infer
-Content-Type: application/json
-
-{
-  "prompt": "Describe this image",
-  "image_base64": "<base64 encoded image>"
-}
-```
-
 ---
 
 ## Testing
@@ -66,6 +54,26 @@ You can test the API using the included scripts in the `usecase/` folder:
 
 ```bash
 python3 usecase/testAPI.py
+```
+
+Testing the API state:
+```
+import os
+from dotenv import load_dotenv
+import requests
+
+load_dotenv()
+HOST = os.getenv("HOST")
+PORT = os.getenv("PORT")
+url = f"http://{HOST}:{PORT}"
+
+# Test root ("/")
+try:
+    res = requests.get(url)
+    print(f"[/] Status Code: {res.status_code}")
+    print(res.json())
+except requests.exceptions.RequestException as e:
+    print(f"[/] Connection error: {e}")
 ```
 
 ### Image-based inference via remote URL:

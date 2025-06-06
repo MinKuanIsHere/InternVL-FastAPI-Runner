@@ -1,6 +1,6 @@
 services:
   llm_service:
-    container_name: "${UID}_llm_test"
+    container_name: "${UID}_internvl_fastapi"
     build: .
     working_dir: /app
     volumes:
