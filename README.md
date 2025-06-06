@@ -56,24 +56,12 @@ You can test the API using the included scripts in the `usecase/` folder:
 python3 usecase/testAPI.py
 ```
 
-Testing the API state:
+Expected output of testing the API :
 ```
-import os
-from dotenv import load_dotenv
-import requests
-
-load_dotenv()
-HOST = os.getenv("HOST")
-PORT = os.getenv("PORT")
-url = f"http://{HOST}:{PORT}"
-
-# Test root ("/")
-try:
-    res = requests.get(url)
-    print(f"[/] Status Code: {res.status_code}")
-    print(res.json())
-except requests.exceptions.RequestException as e:
-    print(f"[/] Connection error: {e}")
+[/] Status Code: 200 # the status
+{'message': 'API is running'}
+[/ping] {'message': 'hello world'} # test print 
+[/gpu] {'gpu_available': True, 'gpus': ['NVIDIA GeForce RTX 4090']} # the gpu info
 ```
 
 ### Image-based inference via remote URL:
@@ -82,6 +70,19 @@ except requests.exceptions.RequestException as e:
 python3 usecase/testLLM.py
 ```
 
+Template of calling LLM with API
+```
+# 呼叫範例
+img_URL = "https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg"
+# response = infer_image("Describe this image", img_URL)
+response = infer_image("用繁體中文描述圖片", img_URL)
+print(response["result"])
+```
+
+Expected output of testing the LLM :
+```
+這是一張老虎的照片。老虎正躺在綠色的草地上，頭頂正中，眼睛直視前方，表情冷靜。老虎的皮毛上有明顯的條紋，身體呈半躺姿，前肢交疊在身前。背景是綠色的草地，陽光照射在草地上，使整體畫面明亮。
+```
 ---
 
 ## Project Structure
