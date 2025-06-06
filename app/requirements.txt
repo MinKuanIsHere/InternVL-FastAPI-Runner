@@ -1,0 +1,6 @@
+fastapi==0.110.1
+uvicorn==0.27.1
+pillow==10.3.0
+lmdeploy==0.7.3
+timm==0.9.12
+python-dotenv==1.1.0

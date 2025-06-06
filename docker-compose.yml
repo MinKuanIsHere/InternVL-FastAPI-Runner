@@ -1,0 +1,18 @@
+services:
+  llm_service:
+    container_name: "${UID}_llm_test"
+    build: .
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${GPU_ID}
+    ports:
+      - "${PORT}:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
